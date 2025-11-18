@@ -1,0 +1,3 @@
+[submodule "AdvancedHelpTest/AdvancedHelp"]
+	path = AdvancedHelpTest/AdvancedHelp
+	url = https://github.com/smc0709/AdvancedHelp
