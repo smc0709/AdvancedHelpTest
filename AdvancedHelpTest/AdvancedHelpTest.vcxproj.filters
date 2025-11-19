@@ -28,7 +28,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AdvancedHelp\help_example.txt">
+    <Text Include="help_example.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="help_example_result.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

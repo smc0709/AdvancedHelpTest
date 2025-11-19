@@ -130,7 +130,8 @@
     <ClInclude Include="AdvancedHelp\advanced_help.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AdvancedHelp\help_example.txt" />
+    <Text Include="help_example.txt" />
+    <Text Include="help_example_result.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
