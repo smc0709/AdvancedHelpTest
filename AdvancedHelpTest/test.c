@@ -17,20 +17,21 @@
 /////   FUNCTION DEFINITIONS   /////
 
 int main(char* args);
-void printOK();
+static void printOK();
+static void printNOK();
 
 
 
 
 /////   FUNCTION IMPLEMENTATIONS   /////
 
-void printOK() {
+static void printOK() {
 	printf(" ________________\n");
 	printf("|                |\n");
 	printf("|    TEST  OK    |\n");
 	printf("|________________|\n");
 }
-void printNOK() {
+static void printNOK() {
 	printf(" ________________\n");
 	printf("|                |\n");
 	printf("|   TEST  FAIL   |\n");
@@ -97,7 +98,7 @@ int main(char* args){
 	result = getAdvancedHelpForKeyword(keyword, help_ptr);
 	printf("Obtained result (len=%d):\n", (NULL == result) ? -1 : (int)strlen(result));
 	printf("--------------------------------------------------\n");
-	printf("%s", (NULL == result) ? "NULL" : result);
+	printf("%s", (NULL == result) ? "NULL\n" : result);
 	printf("--------------------------------------------------\n");
 	error = getTextFromFile(text_result_filename, &text_result_ptr);
 	printf("After getTextFromFile:\n");
@@ -105,7 +106,7 @@ int main(char* args){
 	printf("text_result_ptr = %p\n", help_ptr);
 	printf("Expected result (len=%d):\n", (NULL == text_result_ptr) ? -1 : (int)strlen(text_result_ptr));
 	printf("--------------------------------------------------\n");
-	printf("%s", (NULL == text_result_ptr) ? "NULL" : text_result_ptr);
+	printf("%s", (NULL == text_result_ptr) ? "NULL\n" : text_result_ptr);
 	printf("--------------------------------------------------\n");
 
 
@@ -170,14 +171,14 @@ int main(char* args){
 	//--------------------------------------------------------------------------------
 
 	// Preparation of W variables
-	WCHAR* help_filename_w[MAX_PATH] = { 0 };
+	WCHAR help_filename_w[MAX_PATH] = { 0 };
 	size_t conv_chars = 0;
 	error = mbstowcs_s(&conv_chars, help_filename_w, MAX_PATH, help_filename, MAX_PATH);
 
-	WCHAR* text_result_filename_w[MAX_PATH] = { 0 };
+	WCHAR text_result_filename_w[MAX_PATH] = { 0 };
 	error = mbstowcs_s(&conv_chars, text_result_filename_w, MAX_PATH, text_result_filename, MAX_PATH);
 
-	WCHAR* keyword_w[MAX_KEYWORD_LEN] = { 0 };
+	WCHAR keyword_w[MAX_KEYWORD_LEN] = { 0 };
 	error = mbstowcs_s(&conv_chars, keyword_w, MAX_KEYWORD_LEN, keyword, MAX_KEYWORD_LEN);
 
 	WCHAR* result_w = NULL;
@@ -196,7 +197,7 @@ int main(char* args){
 	result_w = getAdvancedHelpForKeywordW(keyword_w, help_ptr);
 	printf("Obtained result (len=%d):\n", (NULL == result_w) ? -1 : (int)wcslen(result_w));
 	printf("--------------------------------------------------\n");
-	printf("%ws", (NULL == result_w) ? L"NULL" : result_w);
+	printf("%ws", (NULL == result_w) ? L"NULL\n" : result_w);
 	printf("--------------------------------------------------\n");
 	error = getTextFromFileW(text_result_filename_w, &text_result_ptr_w);
 	printf("After getTextFromFile:\n");
@@ -204,7 +205,7 @@ int main(char* args){
 	printf("text_result_ptr = %p\n", help_ptr);
 	printf("Expected result (len=%d):\n", (NULL == text_result_ptr_w) ? -1 : (int)wcslen(text_result_ptr_w));
 	printf("--------------------------------------------------\n");
-	printf("%ws", (NULL == text_result_ptr_w) ? L"NULL" : text_result_ptr_w);
+	printf("%ws", (NULL == text_result_ptr_w) ? L"NULL\n" : text_result_ptr_w);
 	printf("--------------------------------------------------\n");
 
 
@@ -216,7 +217,6 @@ int main(char* args){
 	if (NULL != result_w && NULL != text_result_ptr_w && wcslen(result_w) == wcslen(text_result_ptr_w) && 0 == wcscmp(result_w, text_result_ptr_w)) {
 		printOK();
 	} else {
-		printf("Difference: %d", wcscmp(result_w, text_result_ptr_w));
 		printNOK();
 	}
 
